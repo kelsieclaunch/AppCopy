@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/hikingbackground">
+
+    <Button
+        android:id="@+id/mainStartButton"
+        android:layout_width="215dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="48dp"
+        android:onClick="startProfile"
+        android:text="Start Your Journey Here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/userPhoto"
+        android:layout_width="234dp"
+        android:layout_height="224dp"
+        android:layout_marginTop="41dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/targetCalorieText"
+        android:layout_width="288dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/brown"
+        android:textSize="25sp"
+        android:background="@color/brownlight"
+        app:layout_constraintBottom_toTopOf="@+id/targetCalorieOutput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/targetCalorieOutput"
+        android:layout_width="175dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="56dp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:background="@color/brownlight"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/mainStartButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/stepsText"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/brownlight"
+        android:text="Daily Step Count:"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/targetCalorieText"
+        app:layout_constraintEnd_toStartOf="@+id/stepsValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userPhoto" />
+
+    <TextView
+        android:id="@+id/stepsValue"
+        android:layout_width="113dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="17dp"
+        android:background="@color/brownlight"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/targetCalorieText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userPhoto"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recyclerView"-->
+    <!--        android:layout_width="409dp"-->
+    <!--        android:layout_height="574dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        tools:layout_editor_absoluteY="1dp" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

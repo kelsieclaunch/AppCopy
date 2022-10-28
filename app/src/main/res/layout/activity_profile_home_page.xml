@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hikingbackgroundblur"
+    tools:context=".ProfileHomePage">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="252dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/lightwhite"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEditInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="17dp"
+        android:text="Edit my information"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/deleteProfile" />
+
+    <Button
+        android:id="@+id/HikeMapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="13dp"
+        android:onClick="HikeMapButton"
+        android:text="Find Hikes Near Me"
+        app:layout_constraintBottom_toTopOf="@+id/bmrButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WeatherButton" />
+
+    <Button
+        android:id="@+id/WeatherButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="109dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="WeatherButton"
+        android:text="Check Weather"
+        app:layout_constraintBottom_toTopOf="@+id/HikeMapButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
+
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="101dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/gallery_thumb" />
+
+    <TextView
+        android:id="@+id/viewAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/lightwhite"
+        android:text="Your Age:"
+        android:textColor="@color/brown"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/showAge"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewAL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/lightwhite"
+        android:text="Your Activity Level:"
+        android:textColor="@color/brown"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/showActivityLevel"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/lightwhite"
+        android:text="Your Height:"
+        android:textColor="@color/brown"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/showHeight"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/showName"
+        android:layout_width="211dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/lightwhite"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/showAge"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/lightwhite"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewSex"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/showActivityLevel"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/lightwhite"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewAge"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/showHeight"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/lightwhite"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewWeight"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/lightwhite"
+        android:text="Your Weight:"
+        android:textColor="@color/brown"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/showWeight"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/showWeight"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/lightwhite"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/deleteProfile"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/viewSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="24dp"
+        android:background="@color/lightwhite"
+        android:text="Your Sex: "
+        android:textColor="@color/brown"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/showSex"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/showSex"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/lightwhite"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewHeight"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/deleteProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="16dp"
+        android:text="Delete My Profile"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditInfo" />
+
+    <Button
+        android:id="@+id/bmrButton"
+        android:layout_width="199dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="13dp"
+        android:onClick="bmrButton"
+        android:text="Calculate my BMR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HikeMapButton" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="227dp"
+        android:layout_marginTop="451dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="261dp"
+        android:background="@color/lightwhite"
+        android:text="Your target calorie intake:"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showBMR"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="494dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="166dp"
+        android:background="@color/lightwhite"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hikingbackgroundblur"
+    tools:context=".EditBMR">
+
+    <Spinner
+        android:id="@+id/updateActivity"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginEnd="199dp"
+        android:layout_marginBottom="498dp"
+        android:background="@color/lightwhite"
+        android:entries="@array/level"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/updateHeight"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="318dp"
+        android:layout_marginEnd="199dp"
+        android:layout_marginBottom="363dp"
+        android:background="@color/lightwhite"
+        android:entries="@array/feet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/updateWeight"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="448dp"
+        android:layout_marginEnd="199dp"
+        android:layout_marginBottom="233dp"
+        android:background="@color/lightwhite"
+        android:entries="@array/weight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/BMRBackButton"
+        android:layout_width="113dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="643dp"
+        android:layout_marginEnd="279dp"
+        android:layout_marginBottom="40dp"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/updateLevelButton"
+        android:layout_width="113dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="307dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="498dp"
+        android:text="UPDATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/updateHeightButton"
+        android:layout_width="113dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="307dp"
+        android:layout_marginTop="318dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="363dp"
+        android:text="UPDATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/updateWeightButton"
+        android:layout_width="113dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="307dp"
+        android:layout_marginTop="448dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="233dp"
+        android:text="UPDATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/updateLevelPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="131dp"
+        android:layout_marginBottom="581dp"
+        android:background="@color/lightwhite"
+        android:text="Update your activity level:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/updateHeightPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="268dp"
+        android:layout_marginBottom="444dp"
+        android:background="@color/lightwhite"
+        android:text="Update your height, in inches:"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/updateWeightPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="401dp"
+        android:layout_marginBottom="311dp"
+        android:background="@color/lightwhite"
+        android:text="Update your weight, in pounds:"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/updateInformationPrompt"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="656dp"
+        android:background="@color/lightwhite"
+        android:text="Update your information"
+        android:textAlignment="center"
+        android:textColor="@color/brown"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/recalcBMR"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="542dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="133dp"
+        android:text="RECALCULATE BMR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
