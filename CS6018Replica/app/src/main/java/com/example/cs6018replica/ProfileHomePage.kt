@@ -101,6 +101,13 @@ class ProfileHomePage : AppCompatActivity() {
 
     }
 
+    fun stepButton (view : View){
+        val intent = Intent(this, StepCounterGesture::class.java).apply{
+
+        }
+        startActivity(intent)
+    }
+
     fun displayProfile(){
         showName = findViewById(R.id.showName)
         showName.text = appDb.userDAO().getName()
