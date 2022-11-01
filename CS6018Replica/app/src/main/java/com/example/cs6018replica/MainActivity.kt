@@ -22,6 +22,17 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.amplifyframework.AmplifyException
+import com.amplifyframework.auth.AuthException
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
+import com.amplifyframework.auth.result.AuthSignInResult
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.storage.StorageException
+import com.amplifyframework.storage.options.StorageDownloadFileOptions
+import com.amplifyframework.storage.result.StorageDownloadFileResult
+import com.amplifyframework.storage.result.StorageTransferProgress
+import com.amplifyframework.storage.result.StorageUploadFileResult
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -39,6 +50,18 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        try{
+            Amplify.addPlugin(AWSCognitoAuthPlugin())
+            Amplify.addPlugin(AWSS3StoragePlugin())
+            Amplify.configure(applicationContext)
+            Log.d("debug", "initialized amplify")
+            Amplify.Auth.signInWithWebUI(
+                this,
+                {result: AuthSignInResult -> Log.d("AuthQuickStart", result.toString())}
+            ) {error: AuthException -> Log.e("AuthQuickStart", error.toString())}
+        } catch(error: AmplifyException){
+            Log.e("Lifestyle App", "Could not initialize Amplify", error)
+        }
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
