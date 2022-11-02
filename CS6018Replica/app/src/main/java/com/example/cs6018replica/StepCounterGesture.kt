@@ -78,6 +78,7 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
 
     override fun onScroll(p0: MotionEvent, p1: MotionEvent, p2: Float, p3: Float): Boolean {
         Log.d("Debug: ", "onSingleTapConfirmed: event")
+        initializeDb()
         return true
     }
 
@@ -89,5 +90,9 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
     override fun onFling(p0: MotionEvent, p1: MotionEvent, p2: Float, p3: Float): Boolean {
         Log.d("Debug: ", "onSingleTapConfirmed: event")
         return true
+    }
+
+    fun initializeDb(){
+
     }
 }

@@ -11,5 +11,44 @@
       "StackId": "arn:aws:cloudformation:us-west-1:061750463124:stack/amplify-lifestyleapp-dev-15220/c934e850-5827-11ed-9e10-06a17af4d217",
       "AmplifyAppId": "d3gek68sx67grp"
     }
+  },
+  "env": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lifestyleapp-env-204742-authRole",
+      "UnauthRoleArn": "arn:aws:iam::061750463124:role/amplify-lifestyleapp-env-204742-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::061750463124:role/amplify-lifestyleapp-env-204742-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lifestyleapp-env-204742-deployment",
+      "UnauthRoleName": "amplify-lifestyleapp-env-204742-unauthRole",
+      "StackName": "amplify-lifestyleapp-env-204742",
+      "StackId": "arn:aws:cloudformation:us-east-1:061750463124:stack/amplify-lifestyleapp-env-204742/8fc23be0-598f-11ed-9dab-0e7c67f970e5",
+      "AmplifyAppId": "d1vv4u8h1fxfg9"
+    }
+  },
+  "rip": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lifestyleapp-rip-210102-authRole",
+      "UnauthRoleArn": "arn:aws:iam::061750463124:role/amplify-lifestyleapp-rip-210102-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::061750463124:role/amplify-lifestyleapp-rip-210102-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lifestyleapp-rip-210102-deployment",
+      "UnauthRoleName": "amplify-lifestyleapp-rip-210102-unauthRole",
+      "StackName": "amplify-lifestyleapp-rip-210102",
+      "StackId": "arn:aws:cloudformation:us-east-1:061750463124:stack/amplify-lifestyleapp-rip-210102/6cf63c40-5991-11ed-84ea-0e7978bf37f7",
+      "AmplifyAppId": "d1vv4u8h1fxfg9"
+    }
+  },
+  "new": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lifestyleapp-new-83037-authRole",
+      "UnauthRoleArn": "arn:aws:iam::061750463124:role/amplify-lifestyleapp-new-83037-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::061750463124:role/amplify-lifestyleapp-new-83037-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lifestyleapp-new-83037-deployment",
+      "UnauthRoleName": "amplify-lifestyleapp-new-83037-unauthRole",
+      "StackName": "amplify-lifestyleapp-new-83037",
+      "StackId": "arn:aws:cloudformation:us-east-1:061750463124:stack/amplify-lifestyleapp-new-83037/ec6b8640-5aba-11ed-b59a-122b236ae7c1",
+      "AmplifyAppId": "d1vv4u8h1fxfg9"
+    }
   }
 }

@@ -70,6 +70,11 @@ dependencies {
 
     implementation 'com.amazonaws:aws-android-sdk-ddb:2.55.0'
 
+    implementation 'com.amplifyframework:core:1.37.5'
+
+    implementation 'com.amplifyframework:aws-storage-s3:1.37.5'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.37.5'
+
 
 
 
