@@ -50,5 +50,23 @@
       "StackId": "arn:aws:cloudformation:us-east-1:061750463124:stack/amplify-lifestyleapp-new-83037/ec6b8640-5aba-11ed-b59a-122b236ae7c1",
       "AmplifyAppId": "d1vv4u8h1fxfg9"
     }
+  },
+  "life": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lifestyleapp-life-202136-authRole",
+      "UnauthRoleArn": "arn:aws:iam::733806080387:role/amplify-lifestyleapp-life-202136-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::733806080387:role/amplify-lifestyleapp-life-202136-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lifestyleapp-life-202136-deployment",
+      "UnauthRoleName": "amplify-lifestyleapp-life-202136-unauthRole",
+      "StackName": "amplify-lifestyleapp-life-202136",
+      "StackId": "arn:aws:cloudformation:us-east-1:733806080387:stack/amplify-lifestyleapp-life-202136/3f81c890-5b1e-11ed-a416-0aa433914545",
+      "AmplifyAppId": "d7t8x374l98st"
+    },
+    "categories": {
+      "api": {
+        "lifestyleapp": {}
+      }
+    }
   }
 }
