@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 @Database(entities = [StepCounter :: class], version = 1, exportSchema = true)
 abstract class StepsDatabase : RoomDatabase() {
 
-    abstract fun stepCounterDAO() : StepCounterDAO
+    abstract fun StepCounterDAO() : StepCounterDAO
 
     companion object{
         @Volatile

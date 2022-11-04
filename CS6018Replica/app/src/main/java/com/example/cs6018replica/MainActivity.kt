@@ -20,6 +20,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.util.Log
+import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.amplifyframework.AmplifyException
@@ -33,35 +34,30 @@ import com.amplifyframework.storage.result.StorageDownloadFileResult
 import com.amplifyframework.storage.result.StorageTransferProgress
 import com.amplifyframework.storage.result.StorageUploadFileResult
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin
+import java.io.BufferedWriter
+import java.io.File
+import java.io.FileWriter
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var binding : ActivityMainBinding
-    private lateinit var appDb : AppDatabase
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var appDb: AppDatabase
     var clickCount = 0;
-    private lateinit var userPhoto : ImageView
-    private lateinit var calorieText : TextView
-    private lateinit var calorieOutputText : TextView
-    private lateinit var stepsValue : TextView
+    private lateinit var userPhoto: ImageView
+    private lateinit var calorieText: TextView
+    private lateinit var calorieOutputText: TextView
+    private lateinit var stepsValue: TextView
+
     //private lateinit var bmrPage : BMRcalculation
     var running = false
-    var sensorManager:SensorManager? = null
-
+    var sensorManager: SensorManager? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        try{
-            Amplify.addPlugin(AWSCognitoAuthPlugin())
-            Amplify.addPlugin(AWSS3StoragePlugin())
-            Amplify.configure(applicationContext)
-            Log.d("debug", "initialized amplify")
-            Amplify.Auth.signInWithWebUI(
-                this,
-                {result: AuthSignInResult -> Log.d("AuthQuickStart", result.toString())}
-            ) {error: AuthException -> Log.e("AuthQuickStart", error.toString())}
-        } catch(error: AmplifyException){
-            Log.e("Lifestyle App", "Could not initialize Amplify", error)
-        }
+        //findViewById<Button>(R.id.uploadButton).setOnClickListener { uploadFile() }
+        //findViewById<Button>(R.id.downloadButton).setOnClickListener { downloadFile() }
+
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -82,12 +78,16 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         val sensorList = sensorManager!!.getSensorList(Sensor.TYPE_ALL)
         sensorList.forEachIndexed { index, sensor ->
-            Log.d("Debug: ","Sensor (${index + 1}): ${sensor.name}; isWakeUpSensor: ${sensor.isWakeUpSensor}")
+            Log.d(
+                "Debug: ",
+                "Sensor (${index + 1}): ${sensor.name}; isWakeUpSensor: ${sensor.isWakeUpSensor}"
+            )
         }
 
         //checking the permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
-            != PackageManager.PERMISSION_GRANTED) {
+            != PackageManager.PERMISSION_GRANTED
+        ) {
             Log.d("Debug: ", "Permission for activity not granted")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 val ACTIVITY_RECOGNITION_REQUEST_CODE = 100
@@ -105,12 +105,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
 
-        userPhoto.setOnClickListener{
-            if(appDb.userDAO().getAll() == null){
+        userPhoto.setOnClickListener {
+            if (appDb.userDAO().getAll() == null) {
                 Toast.makeText(this, "Create a profile first!", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                val intent = Intent(this, ProfileHomePage::class.java).apply{
+            } else {
+                val intent = Intent(this, ProfileHomePage::class.java).apply {
                     "Welcome!"
                 }
                 startActivity(intent)
@@ -121,18 +120,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
 
-
-
     }
 
-    fun startProfile( view: View) {
-        if(clickCount == 0 && appDb.userDAO().getAll() != null){
+    fun startProfile(view: View) {
+        if (clickCount == 0 && appDb.userDAO().getAll() != null) {
             Toast.makeText(this, "Are you sure you want to start over?", Toast.LENGTH_SHORT).show()
             clickCount++
-        }
-        else{
+        } else {
             appDb.userDAO().deleteAll()
-            val intent = Intent(this, Username::class.java).apply{
+            val intent = Intent(this, Username::class.java).apply {
             }
             startActivity(intent)
 
@@ -169,7 +165,5 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             stepsValue.text = "" + event.values[0]
         }
     }
-
-
 
 }

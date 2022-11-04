@@ -1,6 +1,7 @@
 package com.example.cs6018replica
 
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
@@ -9,10 +10,18 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.util.*
 
 class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListener,
     GestureDetector.OnDoubleTapListener {
     private lateinit var stepCounter : TextView
+    private lateinit var stepsDb : StepsDatabase
+    private lateinit var stepsValue : TextView
+    var totalSteps = 0
+    var stepsOn = false
 
     private lateinit var mDetector: GestureDetectorCompat
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +51,10 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
     override fun onDoubleTap(event: MotionEvent): Boolean {
         Log.d("Debug: ", "onDoubleTap: $event")
         stepCounter = findViewById(R.id.stepCounterGesture)
-        stepCounter.text = "Hi!"
-
+        stepCounter.text = totalSteps.toString()
+        if(stepsOn){
+            stepsOn = false
+        }
         return true
     }
 
@@ -89,10 +100,30 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
 
     override fun onFling(p0: MotionEvent, p1: MotionEvent, p2: Float, p3: Float): Boolean {
         Log.d("Debug: ", "onSingleTapConfirmed: event")
+        if (stepsOn){
+            totalSteps++
+        }
         return true
     }
 
     fun initializeDb(){
+        val currentDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date());
+        val steps = StepCounter(0, currentDate)
+        stepsDb = StepsDatabase.getDatabase(this)
 
+        GlobalScope.launch(Dispatchers.IO){
+            stepsDb.StepCounterDAO().insert(steps)
+        }
+        showYesterday()
+    }
+
+    fun showYesterday(){
+        val dateFormat: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DATE, -1)
+        var yesterday = dateFormat.format(cal)
+        stepsValue = findViewById(R.id.yesterdaySteps)
+        val stepString = stepsDb.StepCounterDAO().getYesterdaySteps(yesterday).toString()
+        stepsValue.text = stepString
     }
 }
