@@ -22,17 +22,25 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.amazonaws.services.s3.S3ClientOptions.builder
 import com.amplifyframework.AmplifyException
+import com.amplifyframework.analytics.AnalyticsEvent.builder
 import com.amplifyframework.auth.AuthException
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
+import com.amplifyframework.auth.cognito.options.AWSCognitoAuthConfirmSignInOptions.builder
+import com.amplifyframework.auth.cognito.options.AWSCognitoAuthUpdateUserAttributeOptions.builder
 import com.amplifyframework.auth.result.AuthSignInResult
 import com.amplifyframework.core.Amplify
+import com.amplifyframework.datastore.AWSDataStorePlugin
 import com.amplifyframework.storage.StorageException
 import com.amplifyframework.storage.options.StorageDownloadFileOptions
 import com.amplifyframework.storage.result.StorageDownloadFileResult
 import com.amplifyframework.storage.result.StorageTransferProgress
 import com.amplifyframework.storage.result.StorageUploadFileResult
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin
+import com.google.android.gms.location.Priority
+import java.io.File
+import java.util.stream.DoubleStream.builder
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -50,18 +58,32 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        try{
-            Amplify.addPlugin(AWSCognitoAuthPlugin())
-            Amplify.addPlugin(AWSS3StoragePlugin())
-            Amplify.configure(applicationContext)
-            Log.d("debug", "initialized amplify")
-            Amplify.Auth.signInWithWebUI(
-                this,
-                {result: AuthSignInResult -> Log.d("AuthQuickStart", result.toString())}
-            ) {error: AuthException -> Log.e("AuthQuickStart", error.toString())}
-        } catch(error: AmplifyException){
-            Log.e("Lifestyle App", "Could not initialize Amplify", error)
-        }
+//        try{
+//            Amplify.addPlugin(AWSCognitoAuthPlugin())
+//            Amplify.addPlugin(AWSDataStorePlugin())
+//            Amplify.addPlugin(AWSS3StoragePlugin())
+//            Amplify.configure(applicationContext)
+//            Log.d("debug", "initialized amplify")
+//            Amplify.Auth.signInWithWebUI(
+//                this,
+//                {result: AuthSignInResult -> Log.d("AuthQuickStart", result.toString())}
+//            ) {error: AuthException -> Log.e("AuthQuickStart", error.toString())}
+//        } catch(error: AmplifyException){
+//            Log.e("Lifestyle App", "Could not initialize Amplify", error)
+//        }
+
+//        val user = User.builder()
+//            .username("Terra")
+//            .age(8)
+//            .activity_level("Moderately Active")
+//            .height("60")
+//            .sex("Male")
+//            .weight(120)
+//            .picture("me.com")
+//            .bmr(1300)
+//            .location("Salt Lake")
+//            .build()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

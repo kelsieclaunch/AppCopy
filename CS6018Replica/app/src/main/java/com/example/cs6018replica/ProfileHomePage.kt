@@ -5,16 +5,28 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.amplifyframework.AmplifyException
+import com.amplifyframework.auth.AuthException
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
+import com.amplifyframework.auth.result.AuthSignInResult
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.datastore.AWSDataStorePlugin
+import com.amplifyframework.storage.StorageException
+import com.amplifyframework.storage.result.StorageUploadFileResult
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin
 import com.example.cs6018replica.databinding.ActivityProfileHomePageBinding
 import com.example.cs6018replica.databinding.ActivityUsernameBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
+
 
 class ProfileHomePage : AppCompatActivity() {
 
@@ -39,6 +51,7 @@ class ProfileHomePage : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         thisBinding = ActivityProfileHomePageBinding.inflate(layoutInflater)
         usernameBinding = ActivityUsernameBinding.inflate(layoutInflater)
@@ -70,7 +83,22 @@ class ProfileHomePage : AppCompatActivity() {
 
         }
 
+        try{
+            Amplify.addPlugin(AWSCognitoAuthPlugin())
+            Amplify.addPlugin(AWSDataStorePlugin())
+            Amplify.addPlugin(AWSS3StoragePlugin())
+            //Amplify.addPlugin(AWSApiPlugin())
+            Amplify.configure(applicationContext)
+            Log.d("debug", "initialized amplify")
+            Amplify.Auth.signInWithWebUI(
+                this,
+                {result: AuthSignInResult -> Log.d("AuthQuickStart", result.toString())}
+            ) {error: AuthException -> Log.e("AuthQuickStart", error.toString())}
+        } catch(error: AmplifyException){
+            Log.e("Lifestyle App", "Could not initialize Amplify", error)
+        }
 
+        uploadFile()
 
 
     }
@@ -153,6 +181,63 @@ class ProfileHomePage : AppCompatActivity() {
 //            thisBinding.showWeight.text = user.weight.toString()
 //
 //        }
+    }
+
+    private fun uploadFile() {
+        val firstFile = File(applicationContext.filesDir, "/data/data/com.example.cs6018replica/databases/app_database")
+        val secondFile = File(applicationContext.filesDir, "/data/data/com.example.cs6018replica/databases/app_database-shm")
+        val thirdFile = File(applicationContext.filesDir, "/data/data/com.example.cs6018replica/databases/app_database-wal")
+        Amplify.Storage.uploadFile(
+            "DatabaseFile1",
+            firstFile,
+            { result: StorageUploadFileResult ->
+                Log.i(
+                    "MyAmplifyApp",
+                    "Successfully uploaded: " + result.key
+                )
+            },
+            { storageFailure: StorageException? ->
+                Log.e(
+                    "MyAmplifyApp",
+                    "Upload failed",
+                    storageFailure
+                )
+            }
+        )
+        Amplify.Storage.uploadFile(
+            "DatabaseFile2",
+            secondFile,
+            { result: StorageUploadFileResult ->
+                Log.i(
+                    "MyAmplifyApp",
+                    "Successfully uploaded: " + result.key
+                )
+            },
+            { storageFailure: StorageException? ->
+                Log.e(
+                    "MyAmplifyApp",
+                    "Upload failed",
+                    storageFailure
+                )
+            }
+        )
+        Amplify.Storage.uploadFile(
+            "DatabaseFile3",
+            thirdFile,
+            { result: StorageUploadFileResult ->
+                Log.i(
+                    "MyAmplifyApp",
+                    "Successfully uploaded: " + result.key
+                )
+            },
+            { storageFailure: StorageException? ->
+                Log.e(
+                    "MyAmplifyApp",
+                    "Upload failed",
+                    storageFailure
+                )
+            }
+        )
     }
 
 
