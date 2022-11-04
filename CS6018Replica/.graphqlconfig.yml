@@ -1,0 +1,16 @@
+projects:
+  lifestyleapp:
+    schemaPath: CS6018Replica/app/src/main/graphql/schema.json
+    includes:
+      - CS6018Replica/app/src/main/graphql/**/*.graphql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: ''
+        generatedFileName: ''
+        docsFilePath: >-
+          CS6018Replica/app/src/main/graphql/com/amazonaws/amplify/generated/graphql
+extensions:
+  amplify:
+    version: 3

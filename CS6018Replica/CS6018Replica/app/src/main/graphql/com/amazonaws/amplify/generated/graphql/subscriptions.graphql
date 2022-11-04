@@ -1,0 +1,49 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+  onCreateUser(filter: $filter) {
+    id
+    username
+    age
+    activity_level
+    height
+    sex
+    weight
+    picture
+    bmr
+    location
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+  onUpdateUser(filter: $filter) {
+    id
+    username
+    age
+    activity_level
+    height
+    sex
+    weight
+    picture
+    bmr
+    location
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+  onDeleteUser(filter: $filter) {
+    id
+    username
+    age
+    activity_level
+    height
+    sex
+    weight
+    picture
+    bmr
+    location
+    createdAt
+    updatedAt
+  }
+}
