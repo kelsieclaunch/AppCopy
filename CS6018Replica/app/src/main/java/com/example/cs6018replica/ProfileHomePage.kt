@@ -35,6 +35,7 @@ class ProfileHomePage : AppCompatActivity() {
     private lateinit var usernameBinding: ActivityUsernameBinding
 
     private lateinit var appDb : AppDatabase
+    private lateinit var stepsDb : StepsDatabase
 
     private lateinit var showName : TextView
     private lateinit var showAge : TextView
@@ -57,6 +58,7 @@ class ProfileHomePage : AppCompatActivity() {
         usernameBinding = ActivityUsernameBinding.inflate(layoutInflater)
         setContentView(thisBinding.root)
         appDb = AppDatabase.getDatabase(this)
+        stepsDb = StepsDatabase.getDatabase(this)
         //readFromDb()
         displayProfile()
 
@@ -67,6 +69,7 @@ class ProfileHomePage : AppCompatActivity() {
         thisBinding.deleteProfile.setOnClickListener{
             GlobalScope.launch{
                 appDb.userDAO().deleteAll()
+                stepsDb.StepCounterDAO().deleteAll()
             }
             val intent = Intent(this, MainActivity::class.java).apply{
                 "In MainActivity class"
