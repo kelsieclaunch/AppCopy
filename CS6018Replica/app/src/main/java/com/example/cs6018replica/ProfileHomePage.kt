@@ -21,6 +21,7 @@ import com.amplifyframework.storage.result.StorageUploadFileResult
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin
 import com.example.cs6018replica.databinding.ActivityProfileHomePageBinding
 import com.example.cs6018replica.databinding.ActivityUsernameBinding
+import com.amplifyframework.datastore.DataStorePlugin
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -90,6 +91,7 @@ class ProfileHomePage : AppCompatActivity() {
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.addPlugin(AWSDataStorePlugin())
             Amplify.addPlugin(AWSS3StoragePlugin())
+            //Amplify.addPlugin(AWSDataStorePlugin(AmplifyModelProvider.getInstance()))
             //Amplify.addPlugin(AWSApiPlugin())
             Amplify.configure(applicationContext)
             Log.d("debug", "initialized amplify")
@@ -101,7 +103,7 @@ class ProfileHomePage : AppCompatActivity() {
             Log.e("Lifestyle App", "Could not initialize Amplify", error)
         }
 
-        uploadFile()
+        //uploadFile()
 
 
     }

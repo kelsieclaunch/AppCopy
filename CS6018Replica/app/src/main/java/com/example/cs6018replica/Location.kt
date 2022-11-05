@@ -124,7 +124,7 @@ class Location : AppCompatActivity() {
 
 
                     Log.d("Debug: ", "made it to updateLocation function")
-                    var locationString = (location.latitude.toString()) + "," + (location.longitude.toString())
+                    var locationString = (location?.latitude.toString()) + "," + (location?.longitude.toString())
                     appDb.userDAO().updateLocation(locationString)
 
 
@@ -153,6 +153,7 @@ class Location : AppCompatActivity() {
     }
 
     private fun NewLocationData() {
+
         locationRequest = LocationRequest.create().apply {
             priority = Priority.PRIORITY_HIGH_ACCURACY
             interval = 0

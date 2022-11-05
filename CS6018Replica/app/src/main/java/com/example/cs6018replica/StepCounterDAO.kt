@@ -13,8 +13,8 @@ interface StepCounterDAO {
     @Query("DELETE FROM steps_table")
     fun deleteAll()
 
-    @Query("SELECT numSteps FROM steps_table where date = 'yesterday'")
-    fun getYesterdaySteps(yesterday : String?)
+    @Query("SELECT numSteps FROM steps_table where date = :yesterday")
+    fun getYesterdaySteps(yesterday : String):Int
 
 
     // this is where our queries will go

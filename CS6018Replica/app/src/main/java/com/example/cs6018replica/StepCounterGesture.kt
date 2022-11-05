@@ -1,9 +1,13 @@
 package com.example.cs6018replica
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.GestureDetector
@@ -12,6 +16,8 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GestureDetectorCompat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -20,7 +26,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListener,
-    GestureDetector.OnDoubleTapListener {
+    GestureDetector.OnDoubleTapListener, SensorEventListener {
     private lateinit var stepCounter : TextView
     var sensorManager: SensorManager? = null
     var totalSteps = 0
@@ -44,6 +50,21 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
         // Set the gesture detector as the double tap
         // listener.
         mDetector.setOnDoubleTapListener(this)
+
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION)
+            != PackageManager.PERMISSION_GRANTED) {
+            Log.d("Debug: ", "Permission for activity not granted")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val ACTIVITY_RECOGNITION_REQUEST_CODE = 100
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACTIVITY_RECOGNITION),
+                    ACTIVITY_RECOGNITION_REQUEST_CODE
+
+                )
+            }
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -61,13 +82,23 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
 
     override fun onDoubleTap(event: MotionEvent): Boolean {
         Log.d("Debug: ", "onDoubleTap: $event")
-
-
-        stepCounter = findViewById(R.id.stepCounterGesture)
-        stepCounter.text = totalSteps.toString()
         if(stepsOn){
             stepsOn = false
+            super.onPause()
+            sensorManager?.unregisterListener(this)
         }
+        super.onResume()
+        stepsOn = true
+        var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+
+        if (stepsSensor == null) {
+            Toast.makeText(this, "No Step Counter Sensor !", Toast.LENGTH_SHORT).show()
+        } else {
+            sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
+        }
+
+
+
 
         return true
     }
@@ -128,7 +159,7 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
         GlobalScope.launch(Dispatchers.IO){
             stepsDb.StepCounterDAO().insert(steps)
         }
-        //showYesterday()
+        showYesterday()
 
     }
 
@@ -154,4 +185,37 @@ class StepCounterGesture : AppCompatActivity(), GestureDetector.OnGestureListene
 
 
 
+    //functions needed to use Sensor functions
+
+    override fun onResume() {
+        super.onResume()
+        stepsOn = true
+        var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+
+        if (stepsSensor == null) {
+            Toast.makeText(this, "No Step Counter Sensor !", Toast.LENGTH_SHORT).show()
+        } else {
+            sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stepsOn = false
+        sensorManager?.unregisterListener(this)
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+    }
+
+    override fun onSensorChanged(event: SensorEvent) {
+
+        if (stepsOn) {
+            stepCounter = findViewById(R.id.stepCounterGesture)
+            stepCounter.text = "" + event.values[0]
+        }
+    }
+
 }
+
+
